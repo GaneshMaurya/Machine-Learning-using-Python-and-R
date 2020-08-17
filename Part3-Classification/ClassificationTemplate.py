@@ -1,4 +1,4 @@
-#Logistic Regresion
+#Classification Template
 
 # Importing libraries
 import numpy as np
@@ -24,10 +24,8 @@ X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
 
-#Fitting Logistic Regression on training set
-from sklearn.linear_model import LogisticRegression
-classifier = LogisticRegression(random_state = 0)
-classifier.fit(X_train, y_train)
+#Fitting classifier on training set
+#Create your classifier
 
 
 #Predicting Test Set Results
