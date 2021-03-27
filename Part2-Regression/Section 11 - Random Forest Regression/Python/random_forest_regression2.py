@@ -48,8 +48,7 @@ X_test = sc_X.transform(X_test)"""
 
 #Fitting Regression model
 from sklearn.ensemble import RandomForestRegressor
-regressor = RandomForestRegressor(n_estimators = 300,
-                                  random_state = 0)
+regressor = RandomForestRegressor(n_estimators = 300, random_state = 0)
 regressor.fit(X, y)
 
 #Predicting Regression result 

@@ -58,8 +58,8 @@ y_pred = sc_y.inverse_transform(regressor.predict(sc_X.transform(np.array([[6.5]
 
 
 #Visualising SVR Model
-plt.scatter(X, y, color="red")
-plt.plot(X, regressor.predict(X), color="blue")
+plt.scatter(sc_X.inverse_transform(X), sc_y.inverse_transform(y), color="red")
+plt.plot(sc_X.inverse_transform(X), sc_y.inverse_transform(regressor.predict(X)), color="blue")
 plt.title("Truth or Bluff (SVR)")
 plt.xlabel("Position Level")
 plt.ylabel("Salary")
@@ -67,10 +67,10 @@ plt.show()
 
 
 #Visualising Regression Model for higher resolution
-X_grid = np.arange(min(X), max(X), 0.1)
+X_grid = np.arange(min(sc_X.inverse_transform(X)), max(sc_X.inverse_transform(X)), 0.1)
 X_grid = X_grid.reshape((len(X_grid), 1))
-plt.scatter(X, y, color="red")
-plt.plot(X_grid, regressor.predict(X_grid), color="blue")
+plt.scatter(sc_X.inverse_transform(X), sc_y.inverse_transform(y), color="red")
+plt.plot(X_grid, sc_y.inverse_transform(regressor.predict(sc_X.transform(X_grid))), color="blue")
 plt.title("Truth or Bluff (SVR)")
 plt.xlabel("Position Level")
 plt.ylabel("Salary")

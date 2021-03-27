@@ -27,7 +27,7 @@ X[:, 1:3] = imputer.transform(X[:, 1:3])'''
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
-ct = ColumnTransformer([("State", OneHotEncoder(), [3])], remainder = 'passthrough')
+ct = ColumnTransformer([('encoder', OneHotEncoder(), [3])], remainder = 'passthrough')
 X = ct.fit_transform(X)
 
 labelencoder_X = LabelEncoder()
@@ -57,6 +57,8 @@ regressor.fit(X_train, y_train)
 
 #Predicting the test set results
 y_pred = regressor.predict(X_test)
+np.set_printoptions(precision=2)
+print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),1)), 1))
 
 
 #Building the optimal model using backward elimination
@@ -77,33 +79,7 @@ X_opt = np.array(X_opt, dtype=float)
 regressor_OLS = sm.OLS(y, X_opt).fit()
 regressor_OLS.summary()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+X_opt = X[:, [0, 3]]
+X_opt = np.array(X_opt, dtype=float)
+regressor_OLS = sm.OLS(y, X_opt).fit()
+regressor_OLS.summary()
