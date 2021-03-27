@@ -30,11 +30,13 @@ X_test = sc_X.transform(X_test)
 
 #Predicting Test Set Results
 y_pred = classifier.predict(X_test)
+print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),1)),1))
 
 
 #Making the confusion matrix
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, accuracy_score
 cm = confusion_matrix(y_test, y_pred)
+accuracy_score(y_test, y_pred)
 
 
 #Visualizing the Training set results
